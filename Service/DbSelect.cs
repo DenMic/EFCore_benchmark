@@ -1,7 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 
 using Infrastructure;
-using Infrastructure.DTO;
 using Infrastructure.Model;
 
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +16,7 @@ namespace Service
     [MemoryDiagnoser]
     public class DbSelect
     {
+        // Database inMemory not work
         public bool inMemoryDb = false;
 
         [Params(true, false)]
@@ -28,16 +28,18 @@ namespace Service
         [Params(10_000)]
         public int Take { get; set; }
 
-
-        public DbSelect() { }
+        public DbSelect() {
+            if (inMemoryDb)
+                ContextHelper.PrepareInMemoryDb();
+        }
 
         [Benchmark]
         public async Task<List<Supplier>> SelectCompanyAsync()
         {
-             using var context = new MyContext(
-                 ContextOptionsHelper.GetCorrectOptions(inMemoryDb),
-                 EnableTraking, 
-                 EnableLazyLoading);
+            using var context = new MyContext(
+                ContextHelper.GetCorrectOptions(inMemoryDb),
+                EnableTraking,
+                EnableLazyLoading);
 
             return await context.GetSet<Supplier>(EnableTraking)
                 .Take(Take)
@@ -48,7 +50,7 @@ namespace Service
         public async Task<List<Supplier>> SelectCompanyWithIncludeAsync()
         {
             using var context = new MyContext(
-                 ContextOptionsHelper.GetCorrectOptions(inMemoryDb),
+                 ContextHelper.GetCorrectOptions(inMemoryDb),
                  EnableTraking,
                  EnableLazyLoading);
 

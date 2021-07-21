@@ -23,40 +23,5 @@ namespace EF_performance.ExtensionMethod
                 }
             });
         }
-
-        //private static void CreateInMemoryDb()
-        //{
-        //   PrepareDb(context);
-        //}
-
-        //private static void PrepareDb(MyContext context)
-        //{
-        //    var rnd = new Random();
-
-        //    for (var i = 0; i < 100_000; i++)
-        //    {
-        //        var company = new Company
-        //        {
-        //            BusinessName = "Test",
-        //            Piva = "12345678912",
-        //        };
-
-        //        var rndNumber = rnd.Next(0, 10);
-        //        var employees = new List<Employee>();
-        //        for (var j = 0; j < rndNumber; j++)
-        //        {
-        //            employees.Add(new Employee()
-        //            {
-        //                FirstName = "FirstName",
-        //                LastName = "LastName",
-        //            });
-        //        }
-
-        //        company.Employees = employees;
-        //        context.Companies.Add(company);
-        //    }
-
-        //    context.SaveChanges();
-        //}
     }
 }
