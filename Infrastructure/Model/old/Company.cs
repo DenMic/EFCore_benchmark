@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EF_performance.EF.Model
+namespace Infrastructure.Model.old
 {
     [Table("Company")]
     public class Company

@@ -1,4 +1,4 @@
-﻿namespace EF_performance.DTO
+﻿namespace Infrastructure.DTO
 {
     public class EmployeeDto
     {

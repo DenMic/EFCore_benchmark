@@ -1,11 +1,13 @@
 ﻿using BenchmarkDotNet.Attributes;
-using EF_performance.EF;
-using EF_performance.EF.Model;
+
+using Infrastructure;
+using Infrastructure.Model;
+
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EF_performance.Business
+namespace Service
 {
     [MemoryDiagnoser]
     public class DbInsert
@@ -22,14 +24,14 @@ namespace EF_performance.Business
 
             using var context = new MyContext(options);
 
-            for (var i = 0; i < insertNumber; i++)
-            {
-                await context.Companies.AddAsync(new Company
-                {
-                    BusinessName = "Test",
-                    Piva = "12345678912"
-                });
-            }
+            //for (var i = 0; i < insertNumber; i++)
+            //{
+            //    await context.Companies.AddAsync(new Company
+            //    {
+            //        BusinessName = "Test",
+            //        Piva = "12345678912"
+            //    });
+            //}
 
             await context.SaveChangesAsync();
         }
@@ -46,11 +48,11 @@ namespace EF_performance.Business
             var taskList = new List<ValueTask>();
             for (var i = 0; i < insertNumber; i++)
             {
-                context.Companies.Add(new Company
-                {
-                    BusinessName = "Test",
-                    Piva = "12345678912"
-                });
+                //context.Companies.Add(new Company
+                //{
+                //    BusinessName = "Test",
+                //    Piva = "12345678912"
+                //});
             }
 
             context.SaveChanges();
@@ -68,11 +70,11 @@ namespace EF_performance.Business
             int i;
             for (i = 0; i < insertNumber; i++)
             {
-                await context.Companies.AddAsync(new Company
-                {
-                    BusinessName = "Test",
-                    Piva = "12345678912"
-                });
+                //await context.Companies.AddAsync(new Company
+                //{
+                //    BusinessName = "Test",
+                //    Piva = "12345678912"
+                //});
 
                 if (i % 10000 == 0)
                     await context.SaveChangesAsync();

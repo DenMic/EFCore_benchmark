@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF_performance", "EF_performance\EF_performance.csproj", "{5FFB20F8-8722-481E-922D-92BD6F5230F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_performance", "EF_performance\EF_performance.csproj", "{5FFB20F8-8722-481E-922D-92BD6F5230F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{308D8E7A-F26E-4EC1-9D11-865B0AA0114B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{E032E0E7-1A65-4310-9632-4C3576393985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{5FFB20F8-8722-481E-922D-92BD6F5230F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FFB20F8-8722-481E-922D-92BD6F5230F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FFB20F8-8722-481E-922D-92BD6F5230F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{308D8E7A-F26E-4EC1-9D11-865B0AA0114B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308D8E7A-F26E-4EC1-9D11-865B0AA0114B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308D8E7A-F26E-4EC1-9D11-865B0AA0114B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308D8E7A-F26E-4EC1-9D11-865B0AA0114B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E032E0E7-1A65-4310-9632-4C3576393985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E032E0E7-1A65-4310-9632-4C3576393985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E032E0E7-1A65-4310-9632-4C3576393985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E032E0E7-1A65-4310-9632-4C3576393985}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EF_performance.DTO
+namespace Infrastructure.DTO
 {
     public class CompanyDto
     {
