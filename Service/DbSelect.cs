@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 
 using Infrastructure;
+using Infrastructure.DTO;
 using Infrastructure.Model;
 
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,10 @@ namespace Service
         [Params(true, false)]
         public bool EnableLazyLoading { get; set; }
 
-        [Params(10_000)]
+        [Params(true, false)]
+        public bool SplitQuery { get; set; }
+
+        [Params(100)]
         public int Take { get; set; }
 
         public DbSelect() {
@@ -34,35 +38,53 @@ namespace Service
         }
 
         [Benchmark]
-        public async Task<List<Supplier>> SelectCompanyAsync()
+        public async Task<List<SupplierDto>> SelectCompanyAsync()
         {
             using var context = new MyContext(
                 ContextHelper.GetCorrectOptions(inMemoryDb),
                 EnableTraking,
                 EnableLazyLoading);
 
-            return await context.GetSet<Supplier>(EnableTraking)
+            var lSupplier = await context.GetSet<Supplier>(EnableTraking)
                 .Take(Take)
                 .ToListAsync();
+
+            return lSupplier.Select(x => new SupplierDto()
+                {
+                    Name = x.CompanyName
+                })
+                .ToList();
         }
 
         [Benchmark]
-        public async Task<List<Supplier>> SelectCompanyWithIncludeAsync()
+        public async Task<List<SupplierDto>> SelectCompanyWithIncludeAsync()
         {
             using var context = new MyContext(
                  ContextHelper.GetCorrectOptions(inMemoryDb),
                  EnableTraking,
                  EnableLazyLoading);
 
-            var qCompany = context.GetSet<Supplier>(EnableTraking)
+            var qSupplier = context.GetSet<Supplier>(EnableTraking)
                     .Include(x => x.Products)
                     .Take(Take);
 
             if (EnableTraking)
-                qCompany = qCompany.AsNoTracking();
+                qSupplier = qSupplier.AsNoTracking();
 
-            return await qCompany
-                .ToListAsync();
+            if (SplitQuery)
+                qSupplier = qSupplier.AsSplitQuery();
+
+            var lSupplier = await qSupplier.ToListAsync();
+
+            return lSupplier.Select(x => new SupplierDto()
+                {
+                   Name = x.CompanyName,
+                   Product = x.Products.Select(y => new ProductDto()
+                   {
+                       Name = y.ProductName
+                   })
+                })
+                .ToList();
         }
     }
 }

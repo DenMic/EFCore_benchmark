@@ -18,10 +18,10 @@ namespace EF_performance
             // BenchmarkRunner.Run<DbInsert>();
 
             // Select Test
-            // BenchmarkRunner.Run<DbSelect>();
+            BenchmarkRunner.Run<DbSelect>();
 
-            var a = await new DbSelect().SelectCompanyAsync();
-            Console.WriteLine(a.Count);
+            //var a = await new DbSelect().SelectCompanyAsync();
+            //Console.WriteLine(a.Count);
         }
 
 

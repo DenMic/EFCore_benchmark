@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.DTO
 {
-    public class EmployeeDto
+    public class ProductDto
     {
         public string Name { get; set; }
     }

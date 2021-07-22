@@ -23,10 +23,10 @@ namespace Infrastructure
         : base(options)
         { }
 
-        public MyContext(DbContextOptions<MyContext> options, bool noTraking, bool lazyLoading)
+        public MyContext(DbContextOptions<MyContext> options, bool enableTraking, bool lazyLoading)
         : base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = noTraking ? QueryTrackingBehavior.NoTracking : QueryTrackingBehavior.TrackAll;
+            ChangeTracker.QueryTrackingBehavior = enableTraking ? QueryTrackingBehavior.TrackAll : QueryTrackingBehavior.NoTracking;
             ChangeTracker.LazyLoadingEnabled = lazyLoading;
         }
 
