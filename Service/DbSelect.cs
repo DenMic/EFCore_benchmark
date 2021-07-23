@@ -76,6 +76,7 @@ namespace Service
 
             var lSupplier = await qSupplier.ToListAsync();
 
+            // Select performed here to test lazy loading
             return lSupplier.Select(x => new SupplierDto()
                 {
                    Name = x.CompanyName,

@@ -13,10 +13,13 @@ namespace Service.Helper
         private static readonly DbContextOptions<MyContext> ctxOptionsSql = new DbContextOptionsBuilder<MyContext>()
             .UseSqlServer("Data Source=.\\;Database=BenchmarkEF;Integrated Security=SSPI;MultipleActiveResultSets=true")
             .EnableSensitiveDataLogging()
+            .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
             .Options;
 
         private static readonly DbContextOptions<MyContext> ctxOptionInMemory = new DbContextOptionsBuilder<MyContext>()
                 .UseInMemoryDatabase(databaseName: $"Select")
+                .EnableSensitiveDataLogging()
+                .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
                 .Options;
 
         internal static DbContextOptions<MyContext> GetCorrectOptions(bool inMemory)
