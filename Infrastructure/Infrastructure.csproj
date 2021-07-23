@@ -12,6 +12,9 @@
     <None Update="DBScript\sample-data.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="DBScript\sample-model-inmemory.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DBScript\sample-model.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

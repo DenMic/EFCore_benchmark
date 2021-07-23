@@ -10,7 +10,6 @@ create table Customer (
    Phone                nvarchar(20)         null,
    constraint PK_CUSTOMER primary key (Id)
 )
-go
 
 /*==============================================================*/
 /* Table: "Order"                                               */
@@ -23,7 +22,6 @@ create table "Order" (
    TotalAmount          decimal(12,2)        null default 0,
    constraint PK_ORDER primary key (Id)
 )
-go
 
 /*==============================================================*/
 /* Table: OrderItem                                             */
@@ -36,7 +34,6 @@ create table OrderItem (
    Quantity             int                  not null default 1,
    constraint PK_ORDERITEM primary key (Id)
 )
-go
 
 /*==============================================================*/
 /* Table: Product                                               */
@@ -50,7 +47,6 @@ create table Product (
    IsDiscontinued       bit                  not null default 0,
    constraint PK_PRODUCT primary key (Id)
 )
-go
 
 /*==============================================================*/
 /* Table: Supplier                                              */
@@ -66,24 +62,19 @@ create table Supplier (
    Fax                  nvarchar(30)         null,
    constraint PK_SUPPLIER primary key (Id)
 )
-go
 
 alter table "Order"
    add constraint FK_ORDER_REFERENCE_CUSTOMER foreign key (CustomerId)
       references Customer (Id)
-go
 
 alter table OrderItem
    add constraint FK_ORDERITE_REFERENCE_ORDER foreign key (OrderId)
       references "Order" (Id)
-go
 
 alter table OrderItem
    add constraint FK_ORDERITE_REFERENCE_PRODUCT foreign key (ProductId)
       references Product (Id)
-go
 
 alter table Product
    add constraint FK_PRODUCT_REFERENCE_SUPPLIER foreign key (SupplierId)
       references Supplier (Id)
-go

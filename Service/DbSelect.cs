@@ -18,7 +18,7 @@ namespace Service
     public class DbSelect
     {
         // Database inMemory not work
-        public bool inMemoryDb = false;
+        public bool inMemoryDb = true;
 
         [Params(true, false)]
         public bool EnableTraking { get; set; }
