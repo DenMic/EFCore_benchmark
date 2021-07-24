@@ -19,9 +19,12 @@ namespace Infrastructure
             return traking ? Set<T>() : Set<T>().AsNoTracking();
         }
 
-        public MyContext(DbContextOptions<MyContext> options)
+        public MyContext(DbContextOptions<MyContext> options, bool createDb = false)
         : base(options)
-        { }
+        {
+            if(createDb)
+                Database.EnsureCreated();
+        }
 
         public MyContext(DbContextOptions<MyContext> options, bool enableTraking, bool lazyLoading)
         : base(options)

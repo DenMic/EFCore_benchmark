@@ -18,7 +18,7 @@ namespace Service
     public class DbSelect
     {
         // Database inMemory not work
-        public bool inMemoryDb = true;
+        public bool isSqliteDb = true;
 
         [Params(true, false)]
         public bool EnableTraking { get; set; }
@@ -33,7 +33,7 @@ namespace Service
         public int Take { get; set; }
 
         public DbSelect() {
-            if (inMemoryDb)
+            if (isSqliteDb)
                 ContextHelper.PrepareInMemoryDb();
         }
 
@@ -41,7 +41,7 @@ namespace Service
         public async Task<List<SupplierDto>> SelectCompanyAsync()
         {
             using var context = new MyContext(
-                ContextHelper.GetCorrectOptions(inMemoryDb),
+                ContextHelper.GetCorrectOptions(isSqliteDb),
                 EnableTraking,
                 EnableLazyLoading);
 
@@ -60,7 +60,7 @@ namespace Service
         public async Task<List<SupplierDto>> SelectCompanyWithIncludeAsync()
         {
             using var context = new MyContext(
-                 ContextHelper.GetCorrectOptions(inMemoryDb),
+                 ContextHelper.GetCorrectOptions(isSqliteDb),
                  EnableTraking,
                  EnableLazyLoading);
 

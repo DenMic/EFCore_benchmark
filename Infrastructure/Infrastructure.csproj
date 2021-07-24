@@ -9,10 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DBScript\sample-data.sql">
+    <None Update="DBScript\sample-data-inmemory.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="DBScript\sample-model-inmemory.sql">
+    <None Update="DBScript\sample-data.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="DBScript\sample-model.sql">
